@@ -1,27 +1,5 @@
 
-var HTMLschoolStart = '<div class="education-entry"></div>';
-var HTMLschoolName = '<a class="workemp" href="#">%data%';
-var HTMLschoolDegree = ' -- %data%</a>';
-var HTMLschoolDates = '<div class="date-text">(%data%)</div>';
-var HTMLschoolLocation = '<div class="location-text">%data%</div>';
-var HTMLschoolMajor = '<em><br>Major: %data%</em>';
-
-
-var HTMLprojectStart = '<div class="project-entry"></div>';
-var HTMLprojectTitle = '<a class="workemp" href="#">%data%</a>';
-var HTMLprojectDates = '<div class="date-text">(%data%)</div>';
-var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '<img src="%data%" class="Imageclass">';
-var googleMap = '<div id="map"></div>';
-
-var HTMLworkStart = '<div class="work-entry"></div>';
-var HTMLworkEmployer = '<a href="#"><span id="emp">%data%</span>';
-var HTMLworkTitle = '--%data%</a>';
-var HTMLworkDates = '<div class="date-text">(%data%)</div>';
-var HTMLworkDescription = '<div class="des" ><br>%data%</div>';
-var HTMLworkLocation = '<div class="location-text">%data%</div>';
-
-
+//bio
 //bio
 
 var bio = {
@@ -58,7 +36,7 @@ var bio = {
         var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
         var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
         var formattedgithub = HTMLgithub.replace("%data%", bio.contacts.github);
-        $("#topContacts").append(formattedMobile, formattedEmail, formattedgithub);
+        $("#topContacts, #footerContacts").append(formattedMobile, formattedEmail, formattedgithub);
     }
 };
 //education
@@ -67,38 +45,53 @@ var education = {
     "schools": [{
         "name": "Bikaner Boys School",
         "location": "Bikaner",
-        "degrees": ["Senior sec."],
+        "degree": ["Senior sec."],
         "majors": ["Science"],
         "dates": "1990-2000",
         "url": "abc@xyz.com",
     }, {
         "name": "NIT Jalandhar",
         "location": "Jalandhar",
-        "degrees": ["Bachelor"],
+        "degree": ["Bachelor"],
         "majors": ["Chemical Engineering"],
         "dates": "2000-2004",
-        "url": "vipul@nitj.ac.in",
+        "url": "vipul@nitj.ac.in"
     }],
     "onlineCourses": [{
         "title": "Front-End Web Developer Nanodegree",
         "school": "Udacity",
         "dates": "2004-2005",
         "url": "https://www.udacity.com/course/nd001",
+        "description":"It was a great course."
     }],
     display :function() {
         education.schools.forEach(function(i) {
             $('#education').append(HTMLschoolStart);
 
             var formattedName = HTMLschoolName.replace("%data%", i.name).replace("#",i.url);
-            var formattedDegree = HTMLschoolDegree.replace("%data%", i.degrees);
+            var formattedDegree = HTMLschoolDegree.replace("%data%", i.degree);
             var formattedDates = HTMLschoolDates.replace("%data%", i.dates);
             var formattedLocation = HTMLschoolLocation.replace("%data%", i.location);
+
             var formattedMajor = HTMLschoolMajor.replace("%data%", i.majors);
 
             $(".education-entry:last").prepend(formattedName + formattedDegree);
             $(".education-entry:last").append(formattedDates);
             $(".education-entry:last").append(formattedLocation);
             $(".education-entry:last").append(formattedMajor);
+
+        });
+        education.onlineCourses.forEach(function(i) {
+            $('#education').append(HTMLschoolStart);
+
+            var formattedName = HTMLschoolName.replace("%data%", i.title).replace("#",i.url);
+            var formattedDegree = HTMLschoolDegree.replace("%data%", i.school);
+            var formattedDates = HTMLschoolDates.replace("%data%", i.dates);
+            var formattedDescription = HTMLprojectDescription.replace("%data%", i.description);
+            
+            $(".education-entry:last").prepend(formattedName + formattedDegree);
+            $(".education-entry:last").append(formattedDates);
+            $(".education-entry:last").append(formattedDescription);
 
         });
     }
