@@ -27,15 +27,15 @@ var HTMLworkLocation = '<div class="location-text">%data%</div>';
 var bio = {
     "name": "Vipul Mittal",
     "role": "WebDeveloper",
-    "welcomeMessage": "Harry James Potter is the orphan Potter, who, on his eleventh birthday, learns he's a wizard. Thus, he attends Hogwarts School of Witchcraft and Wizardry to practise magic under the guidance of the kindly headmaster Albus Dumbledore. Harry discovers that he is already famous throughout the magical community, and that his fate is tied with that of Lord Voldemort, the internationally feared Dark Wizard and murderer of his parents Lily and James.",
-    "biopic": "images/4.jpg",
-    "skills": ["awesome", "handsome", "silent", "cool"],
     "contacts": {
         "mobile": "000-00-00",
         "email": "vmittal@mail.com",
         "github": "mitt",
         "location": "bikaner"
     },
+    "welcomeMessage": "Harry James Potter is the orphan Potter, who, on his eleventh birthday, learns he's a wizard. Thus, he attends Hogwarts School of Witchcraft and Wizardry to practise magic under the guidance of the kindly headmaster Albus Dumbledore. Harry discovers that he is already famous throughout the magical community, and that his fate is tied with that of Lord Voldemort, the internationally feared Dark Wizard and murderer of his parents Lily and James.",
+    "skills": ["awesome", "handsome", "silent", "cool"],
+    "biopic": "images/4.jpg",
     display : function() {
 
         var formattedName = HTMLheaderName.replace("%data%", bio.name);
@@ -58,7 +58,7 @@ var bio = {
         var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
         var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
         var formattedgithub = HTMLgithub.replace("%data%", bio.contacts.github);
-        $("#footerContacts").append(formattedMobile, formattedEmail, formattedgithub);
+        $("#topContacts").append(formattedMobile, formattedEmail, formattedgithub);
     }
 };
 //education
@@ -66,20 +66,20 @@ var bio = {
 var education = {
     "schools": [{
         "name": "Bikaner Boys School",
-        "dates": "1990-2000",
         "location": "Bikaner",
-        "degree": "Senior sec.",
+        "degrees": ["Senior sec."],
         "majors": ["Science"],
+        "dates": "1990-2000",
         "url": "abc@xyz.com",
     }, {
         "name": "NIT Jalandhar",
-        "dates": "2000-2004",
         "location": "Jalandhar",
-        "degree": ["Bachelor"],
-        "majors": "Chemical Engineering",
+        "degrees": ["Bachelor"],
+        "majors": ["Chemical Engineering"],
+        "dates": "2000-2004",
         "url": "vipul@nitj.ac.in",
     }],
-    "onlinecourses": [{
+    "onlineCourses": [{
         "title": "Front-End Web Developer Nanodegree",
         "school": "Udacity",
         "dates": "2004-2005",
@@ -90,7 +90,7 @@ var education = {
             $('#education').append(HTMLschoolStart);
 
             var formattedName = HTMLschoolName.replace("%data%", i.name).replace("#",i.url);
-            var formattedDegree = HTMLschoolDegree.replace("%data%", i.degree);
+            var formattedDegree = HTMLschoolDegree.replace("%data%", i.degrees);
             var formattedDates = HTMLschoolDates.replace("%data%", i.dates);
             var formattedLocation = HTMLschoolLocation.replace("%data%", i.location);
             var formattedMajor = HTMLschoolMajor.replace("%data%", i.majors);
@@ -148,13 +148,13 @@ var projects = {
     "projects": [{
         "title": "Harry Potter and  the chamber of secrets",
         "dates": "2008-2010",
-        "image": ["images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg"],
         "description": "Harry second year at Hogwarts School of Witchcraft and Wizardry, during which a series of messages on the walls of the school corridors warn that the Chamber of Secrets has been opened and that the heir of Slytherin would kill all pupils who do not come from all-magical families. These threats are found after attacks which leave residents of the school",
+        "images": ["images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg"],
     }, {
         "title": "Harry Potter and the Half Blood Prince.",
         "dates": "2011-2012",
         "description": "It is the sixth and penultimate novel in the Harry Potter series, written by British author J. K. Rowling. Set during protagonist Harry Potter's sixth year at Hogwarts, the novel explores the past of Harry's nemesis, Lord Voldemort, and Harry's preparations for the final battle against Voldemort alongside his headmaster and mentor Albus Dumbledore.",
-        "image": ["images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg"]
+        "images": ["images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg"]
     }],
     display : function() {
         projects.projects.forEach(function(i) {
@@ -164,7 +164,7 @@ var projects = {
             var formattedDescription = HTMLprojectDescription.replace("%data%", i.description);
 
             $(".project-entry:last").append(formattedTitle, formattedDates, formattedDescription);
-            i.image.forEach(function(j) {
+            i.images.forEach(function(j) {
                 var formattedImage = HTMLprojectImage.replace("%data%", j);
                 $(".project-entry:last").append(formattedImage);
             });
